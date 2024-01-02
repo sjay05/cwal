@@ -18,7 +18,7 @@ public:
   FILE_FORMAT file_format = FILE_FORMAT::TEXT;
   fstream fs;
 
-  bool open_file(const string& file_path);
+  bool open_file(const string& file);
 
   void close_file();
   void set_file_format(FILE_FORMAT f);
