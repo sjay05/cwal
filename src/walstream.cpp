@@ -1,15 +1,16 @@
 #include "walstream.h"
 
-bool WalStream::open_file(const string& file_path) {
+bool WalStream::open_file(const string& file_p) {
   // open in app | in | out to allow for multiple line IO
+  file_path = file_p; 
   auto mode = ios::app | ios::out;
-  if (filesystem::exists(file_path)) {
+  if (filesystem::exists(file_p)) {
     mode |= ios::in;
   }
   if (file_format == FILE_FORMAT::BINARY) {
     mode |= ios::binary;
   }
-  fs.open(file_path, mode);
+  fs.open(file_p, mode);
   return static_cast<bool>(fs.good());
 }
 

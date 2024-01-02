@@ -2,6 +2,10 @@
 #include <iostream>
 #include <cassert>
 
+// C-lib
+#include <unistd.h>
+#include <fcntl.h>
+
 using namespace std;
 
 bool WalWriter::append_log(const LogEntry& log) {
@@ -10,17 +14,15 @@ bool WalWriter::append_log(const LogEntry& log) {
     return false;
   }
   assert(fs.good() == true);
-  if (file_format == FILE_FORMAT::BINARY) {
-    if (static_cast<uint64_t>(log.data.size()) != log.byte_length) {
-      cerr << "Incorrect byte_len specification" << '\n';
-      return false;
-    }
+  if (static_cast<uint64_t>(log.data.size()) != log.byte_length) {
+    cerr << "Incorrect byte_len specification: byte_len != data.size()" << '\n';
+    return false;
   }
   _append_log(log.data, log.byte_length);
   return true;
 }
 
-inline void WalWriter::flush() {
+inline void WalWriter::wal_flush() {
   if (fs.is_open() && fs.good()) {
     fs.flush();
   }
@@ -45,4 +47,15 @@ void WalWriter::_append_log(const string& data, uint64_t byte_len) {
  fs << byte_len << " " << data << '\n';
  return;
 }
+
+void WalWriter::wal_fsync() {
+  if (!fs.is_open()) {
+    return;
+  }
+  int fd = open(file_path.c_str(), O_RDWR | O_APPEND);
+  fsync(fd); 
+  close(fd);
+//  fs.close();
+//  (*this).open_file(file_path);
+}                               
 
