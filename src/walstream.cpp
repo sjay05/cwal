@@ -1,4 +1,5 @@
 #include "walstream.h"
+#include "CRC/CRC.h"
 
 bool WalStream::open_file(const string& file_p) {
   // open in app | in | out to allow for multiple line IO

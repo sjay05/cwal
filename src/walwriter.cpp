@@ -1,4 +1,7 @@
 #include "walwriter.h"
+#include "walstream.h"
+#include "CRC/CRC.h"
+
 #include <iostream>
 #include <cassert>
 
@@ -35,16 +38,18 @@ inline void WalWriter::rotate_log() {
 }
 
 void WalWriter::_append_log(const string& data, uint64_t byte_len) {
+ uint32_t crc_chksum = CRC::Calculate((const char*) data.c_str(), data.size(), 
+     WalStream::CRC32_TABLE);
  if (file_format == FILE_FORMAT::BINARY) {
    size_t size = data.size();
    fs.write(reinterpret_cast<char*>(&byte_len), sizeof(uint64_t));
    fs.write(const_cast<char*>(&data[0]), size);
-   fs.put('\n');
+   fs.write(reinterpret_cast<char*>(&crc_chksum), sizeof(uint32_t));
    return;
  }
  assert(byte_len == (int) data.size());
  assert(file_format == FILE_FORMAT::TEXT);
- fs << byte_len << " " << data << '\n';
+ fs << byte_len << " " << data << " " << crc_chksum << '\n';
  return;
 }
 
