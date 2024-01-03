@@ -34,7 +34,6 @@ struct LogEntry {
   uint64_t byte_length = 0;
   string data;
 
-  LogEntry(uint64_t len, string& info) : byte_length{len}, data{info} {}
   LogEntry(uint64_t len, string info) : byte_length{len}, data{info} {}
   LogEntry(string s) : byte_length{0}, data{s} {}
   LogEntry(string& info) : byte_length{0}, data{info} {}

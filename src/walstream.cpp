@@ -4,14 +4,16 @@
 bool WalStream::open_file(const string& file_p) {
   // open in app | in | out to allow for multiple line IO
   file_path = file_p; 
-  auto mode = ios::app | ios::out;
-  if (filesystem::exists(file_p)) {
-    mode |= ios::in;
+  if (!filesystem::exists(file_p)) {
+    fs.open(file_p, ios::out);
+    fs.close();
   }
+  auto mode = ios::in | ios::out;
   if (file_format == FILE_FORMAT::BINARY) {
     mode |= ios::binary;
   }
   fs.open(file_p, mode);
+  fs.seekg(0, ios::end);
   return static_cast<bool>(fs.good());
 }
 

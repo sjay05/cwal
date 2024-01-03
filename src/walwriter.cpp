@@ -31,7 +31,7 @@ inline void WalWriter::wal_flush() {
   }
 }
 
-inline void WalWriter::rotate_log() {
+void WalWriter::rotate_log() {
   if (fs.is_open()) {
     fs.seekp(0, ios::beg);
   }

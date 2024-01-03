@@ -17,7 +17,7 @@ public:
 
   inline void wal_flush();
   void wal_fsync();
-  inline void rotate_log();
+  void rotate_log();
 
 private:
   void _append_log(const string& data, uint64_t byte_len);
