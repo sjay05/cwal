@@ -15,7 +15,7 @@ public:
 
   bool append_log(const LogEntry& log);
 
-  inline void wal_flush();
+  void wal_flush();
   void wal_fsync();
   void rotate_log();
 

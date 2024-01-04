@@ -11,7 +11,7 @@ void WalReader::open_file(const string& file_path) {
   fs.seekg(0, ios::beg);
 }
 
-inline void WalReader::reset_iter() {
+void WalReader::reset_iter() {
   if (fs.is_open()) {
     fs.seekg(0, ios::beg);
   }

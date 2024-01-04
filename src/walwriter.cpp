@@ -25,7 +25,7 @@ bool WalWriter::append_log(const LogEntry& log) {
   return true;
 }
 
-inline void WalWriter::wal_flush() {
+void WalWriter::wal_flush() {
   if (fs.is_open() && fs.good()) {
     fs.flush();
   }
@@ -60,7 +60,5 @@ void WalWriter::wal_fsync() {
   int fd = open(file_path.c_str(), O_RDWR | O_APPEND);
   fsync(fd); 
   close(fd);
-//  fs.close();
-//  (*this).open_file(file_path);
 }                               
 

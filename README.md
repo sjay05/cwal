@@ -26,7 +26,7 @@ Log entries consist of of a `byte_len` representing the size of `data` in bytes,
 ```
 
 ## Example
-```
+```cpp
 #include "walstream.h"
 #include "walreader.h"
 #include "walwriter.h"

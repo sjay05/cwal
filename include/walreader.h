@@ -15,7 +15,7 @@ public:
 
   void open_file(const string& file_path);
 
-  inline void reset_iter();
+  void reset_iter();
 
   bool read_log(LogEntry& log);
 };

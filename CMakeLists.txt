@@ -36,4 +36,8 @@ if(MAKE_TESTS)
   add_executable(logtest tests/log_tests.cpp)
   target_include_directories(logtest PUBLIC include)
   target_link_libraries(logtest PUBLIC inc CRC)
+
+  add_executable(benchmark tests/bench.cpp)
+  target_include_directories(benchmark PUBLIC include)
+  target_link_libraries(benchmark PUBLIC inc CRC)
 endif()
