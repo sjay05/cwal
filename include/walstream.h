@@ -25,6 +25,7 @@ public:
   fstream fs;
 
   bool open_file(const string& file);
+  bool open_file_truncated(const string& file);
 
   void close_file();
   void set_file_format(FILE_FORMAT f);

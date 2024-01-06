@@ -1,4 +1,4 @@
-# CWAL
+# CWal
 
 A write ahead log implementation in C++, with support for fast sequential file IO and CRC32 Checksums to preserve file integrity. 
 
@@ -9,9 +9,7 @@ git clone https://github.com/sjay05/cwal.git
 cd cwal
 
 cmake -S . -B <build-folder>
-cd <build-folder>/
-
-make
+cmake --build <build-folder>
 ```
 
 CWAL can also be imported as a Git submodule in a CMake project with `git submodule add https://github.com/sjay05/cwal`.

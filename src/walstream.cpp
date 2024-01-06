@@ -17,6 +17,16 @@ bool WalStream::open_file(const string& file_p) {
   return static_cast<bool>(fs.good());
 }
 
+bool WalStream::open_file_truncated(const string& file_p) {
+  file_path = file_p;
+  auto mode = ios::in | ios::out | ios::trunc;
+  if (file_format == FILE_FORMAT::BINARY) {
+    mode |= ios::binary;
+  }
+  fs.open(file_p, mode);
+  return static_cast<bool>(fs.good());
+}
+
 void WalStream::close_file() {
   if (fs.is_open()) {
     fs.close();

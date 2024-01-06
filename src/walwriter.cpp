@@ -57,8 +57,8 @@ void WalWriter::wal_fsync() {
   if (!fs.is_open()) {
     return;
   }
-  int fd = open(file_path.c_str(), O_RDWR | O_APPEND);
-  fsync(fd); 
-  close(fd);
+ int fd = open(file_path.c_str(), O_RDWR | O_APPEND);
+ fsync(fd); 
+ close(fd);
 }                               
 
