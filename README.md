@@ -15,7 +15,7 @@ cmake --build <build-folder>
 CWAL can also be imported as a Git submodule in a CMake project with `git submodule add https://github.com/sjay05/cwal`.
 
 ## LogEntry Format
-Log entries consist of of a `byte_len` representing the size of `data` in bytes, and a 4 byte CRC Checksum value (`CRC_CHECKSUM`).
+Log entries consist of a `byte_len` representing the size of `data` in bytes, and a 4 byte CRC Checksum value (`CRC_CHECKSUM`).
 ```
 ----|-------------------|--------------------|-----------------------|-----
 ... | uint64_t byte_len | const string* data | uint32_t CRC_CHECKSUM | ... 

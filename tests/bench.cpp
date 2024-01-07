@@ -94,11 +94,16 @@ static void batched_sync_benchmarks(const int LOG_LENGTH, const int LOG_SIZE, co
   cout << "==> ";
   cout << fixed << setprecision(2);
   cout << elapsed_time << " ms" << " | " << (double) elapsed_time / LOG_LENGTH << " ms/log" << '\n';
+  cout << '\n';
 }
 
 int main() {
-  regular_benchmark(1000, 1000, false, true, 1);
+  // regular_benchmark(1000, 1000, false, false);
+  // regular_benchmark(1000, 1000, true, false);
+  // regular_benchmark(1000, 1000, false, true, 1);
+  // regular_benchmark(1000, 1000, false, true, 10);
   batched_sync_benchmarks(1000, 1000, (int) sqrt(1000));
+  batched_sync_benchmarks(1000, 1000, (int) cbrt(1000));
   // display_benchmark(1000, 1000, false, false);
   // display_benchmark(1000, 1000, true, false);
   // display_benchmark(1000, 1000, false, true, 1);
